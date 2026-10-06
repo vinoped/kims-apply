@@ -166,6 +166,12 @@
   .note { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: #FDF1D8; border: 1px solid #F1D9A6; color: #5A4206; font-size: .92rem; }
   .contact { display: grid; gap: 10px; font-size: .98rem; }
   .contact a { font-weight: 800; color: var(--green); text-decoration: none; }
+  .contact .addr { color: inherit; font-weight: 600; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
+  .map { margin-top: 18px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: #EDE6DA; aspect-ratio: 4 / 3; }
+  .map iframe { display: block; width: 100%; height: 100%; border: 0; }
+  .btn-outline { margin-top: 12px; background: var(--paper); color: var(--green); border: 2px solid var(--green); }
+  .btn-outline:active { background: var(--green-tint); }
+  .done .dir { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; color: var(--green); font-weight: 800; text-decoration: none; }
   .contact .k { display: block; font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 800; }
 
   footer { padding: 24px 0 110px; color: var(--muted); font-size: .85rem; }
@@ -307,6 +313,7 @@
             <span class="num">+91 98842 61592</span>
           </a>
           <p class="fine">Can't call right now? We have your number and will get in touch.</p>
+          <a class="dir" href="https://maps.app.goo.gl/pvtjJJ6JbX8Po89R7" target="_blank" rel="noopener" data-directions><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Get directions to KIMS</a>
           <div class="again"><button type="button" id="again">Apply for another child</button></div>
         </div>
       </div>
@@ -335,8 +342,10 @@
         <div class="contact">
           <div><span class="k">Phone</span><a href="tel:+919884261592" data-call>+91 98842 61592</a></div>
           <div><span class="k">Email</span><a href="mailto:thevedic@gmail.com">thevedic@gmail.com</a></div>
-          <div><span class="k">Address</span>Indira Nagar West Extension, Selaiyur, Chennai</div>
+          <div><span class="k">Address</span><a class="addr" href="https://maps.app.goo.gl/pvtjJJ6JbX8Po89R7" target="_blank" rel="noopener">Avvai Nagar, Indira Nagar West Extension, Selaiyur, Chennai 600073</a></div>
         </div>
+        <div class="map"><iframe title="Map showing KIMS in Selaiyur, Chennai" src="https://maps.google.com/maps?cid=5215206354964695475&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+        <a class="btn btn-outline" href="https://maps.app.goo.gl/pvtjJJ6JbX8Po89R7" target="_blank" rel="noopener" data-directions><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Get directions</a>
         <div class="note"><strong>Class 6 to 12:</strong> KIMS Higher Secondary School is opening soon, for current KIMS Primary students only. No new admissions for Classes 6 to 12.</div>
       </div>
     </div>
@@ -451,31 +460,37 @@
     });
   }
 
-  function send(token, keepalive) {
+  function send(token, keepalive, payload) {
     return fetch(CFG.api + "/wix-data/v2/items/save", {
       method: "POST",
       keepalive: !!keepalive,
       headers: { "Content-Type": "application/json", "Authorization": token },
-      body: body()
+      body: payload
     });
   }
 
   var timer = null, inflight = false, again = false;
+  // Only write after the visitor changes something on this visit, so a parent who
+  // already applied and simply reopens the page doesn't create a duplicate entry.
+  var touched = false, lastSent = null;
+  function changed() { touched = true; }
 
   function save(keepalive) {
-    if (!validPhone(lead.phone)) return;
+    if (!touched || !validPhone(lead.phone)) return;
+    var payload = body();
+    if (payload === lastSent) return;
     if (inflight && !keepalive) { again = true; return; }
     inflight = true;
     getToken()
-      .then(function (t) { return send(t, keepalive); })
+      .then(function (t) { return send(t, keepalive, payload); })
       .then(function (r) {
         if (r.status === 401 || r.status === 403) {
           cachedToken = null; store.set(TOKEN_KEY, null);
-          return getToken().then(function (t) { return send(t, keepalive); });
+          return getToken().then(function (t) { return send(t, keepalive, payload); });
         }
         return r;
       })
-      .then(function (r) { lead.synced = !!(r && r.ok); persist(); document.documentElement.dataset.saved = lead.synced ? lead.status : "error"; })
+      .then(function (r) { lead.synced = !!(r && r.ok); if (lead.synced) lastSent = payload; persist(); document.documentElement.dataset.saved = lead.synced ? lead.status : "error"; })
       .catch(function () { lead.synced = false; persist(); document.documentElement.dataset.saved = "error"; })
       .then(function () {
         inflight = false;
@@ -492,7 +507,7 @@
   // Warm the token so the first save is instant.
   getToken().catch(function () {});
   // Retry a save that failed on an earlier visit.
-  if (lead.synced === false) saveSoon(500);
+  if (lead.synced === false) { touched = true; saveSoon(500); }
 
   // ---- Form ----
   var form = document.getElementById("lead-form");
@@ -534,7 +549,7 @@
   phoneEl.addEventListener("input", function () {
     var p = normPhone(phoneEl.value);
     if (p !== phoneEl.value) phoneEl.value = p;
-    lead.phone = p; persist();
+    lead.phone = p; persist(); changed();
     var ok = validPhone(p);
     mark(fPhone, ok, fPhone.classList.contains("invalid") && !ok);
     if (ok) {
@@ -548,7 +563,7 @@
   });
 
   nameEl.addEventListener("input", function () {
-    lead.name = nameEl.value.trim(); persist();
+    lead.name = nameEl.value.trim(); persist(); changed();
     mark(fName, !!lead.name, false);
     saveSoon(700);
   });
@@ -559,7 +574,7 @@
 
   radios.forEach(function (r) {
     r.addEventListener("change", function () {
-      lead.cls = r.value; persist();
+      lead.cls = r.value; persist(); changed();
       mark(fClass, true, false);
       saveSoon(0);
     });
@@ -572,7 +587,7 @@
   }
   document.querySelectorAll("[data-call]").forEach(function (a) {
     a.addEventListener("click", function () {
-      lead.callTapped = true; persist();
+      lead.callTapped = true; persist(); changed();
       saveNow();
     });
   });
@@ -585,7 +600,7 @@
     if (!okName) { nameEl.focus(); return; }
     if (!okClass) { fClass.scrollIntoView({ block: "center" }); radios[0].focus(); return; }
 
-    lead.status = "Submitted"; persist();
+    lead.status = "Submitted"; persist(); changed();
     saveNow();
 
     var first = lead.name.split(/\s+/)[0];
