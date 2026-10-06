@@ -13,9 +13,9 @@
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/67b306_9ac2dc5a50a3494996197cde092cf67e~mv2.png/v1/fit/w_64,h_64/kims-logo.png">
 <link rel="preconnect" href="https://www.wixapis.com" crossorigin>
-<!-- Google Analytics (same property as www.kimsindia.com). No names or phone numbers are sent. -->
+<!-- Google Analytics (same property as www.kimsindia.com) and the Google Ads conversion tag. No names or phone numbers are sent. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-19KM932TQZ"></script>
-<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-19KM932TQZ");</script>
+<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-19KM932TQZ"); gtag("config", "AW-18496684895");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
@@ -488,7 +488,8 @@
     api: "https://www.wixapis.com",
     clientId: "827f6966-0d99-4fb9-be2b-a1068c2e08b3",
     collection: "AdmissionLeads",
-    tel: "+919884261592"
+    tel: "+919884261592",
+    adsLead: "AW-18496684895/iCqdCOWSxJMdEN-G9PNE"  // Google Ads conversion "Admission form submitted"
   };
   var LEAD_KEY = "kims.lead.v1";
   var TOKEN_KEY = "kims.token.v1";
@@ -719,6 +720,8 @@
     lead.status = "Submitted"; persist(); changed();
     saveNow();
     track("generate_lead", { class_applying: lead.cls, device: lead.device });
+    // Tells Google Ads the ad click led to a lead; the lead id stops a re-sent form counting twice.
+    track("conversion", { send_to: CFG.adsLead, value: 1, currency: "INR", transaction_id: lead.id });
 
     var first = lead.name.split(/\s+/)[0];
     document.getElementById("done-title").textContent = "Thank you, " + first + "!";
