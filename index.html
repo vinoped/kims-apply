@@ -288,7 +288,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-side">
-        <div class="eyebrow"><span>Admissions open · <span class="nw">Pre-KG</span> to Class 5</span></div>
+        <div class="eyebrow"><span><span data-until="2026-10-21">Vijayadasami admissions</span><span data-after="2026-10-21" hidden>Admissions open</span> · <span class="nw">Pre-KG to Class 5</span></span></div>
         <h1>Protect your child’s future with an <span class="nw">AI-safe</span> education</h1>
         <p class="lead">AI can memorise anything. At KIMS Selaiyur, children must understand concepts.</p>
         <ul class="points desk-only" aria-label="Why KIMS">
@@ -419,8 +419,8 @@
       </div>
       <div class="final">
         <div>
-          <h2>Admissions are open now</h2>
-          <p>Places are filled on a first-come, first-served basis. Share your number in 30 seconds and talk to our admissions team today.</p>
+          <h2><span data-until="2026-10-21">Vijayadasami admissions are open</span><span data-after="2026-10-21" hidden>Admissions are open now</span></h2>
+          <p><span data-until="2026-10-21">Begin your child’s learning journey this Vijayadasami. </span>Places are filled on a first-come, first-served basis. Share your number in 30 seconds and talk to our admissions team today.</p>
         </div>
         <div class="ctas">
           <a class="btn btn-go" href="#apply">Start your child’s admission <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -472,6 +472,14 @@
 <script>
 (function () {
   "use strict";
+
+  // Seasonal copy: [data-until] shows until that date and [data-after] from that date (dates in IST).
+  (function () {
+    var now = Date.now();
+    function at(el, attr) { return Date.parse(el.getAttribute(attr) + "T00:00:00+05:30"); }
+    document.querySelectorAll("[data-until]").forEach(function (el) { if (now >= at(el, "data-until")) el.remove(); });
+    document.querySelectorAll("[data-after]").forEach(function (el) { if (now >= at(el, "data-after")) el.hidden = false; });
+  })();
 
   // Leads are saved to the "AdmissionLeads" CMS collection on the KIMS India Wix site.
   // The client ID is public: it only mints anonymous visitor tokens, and the collection
