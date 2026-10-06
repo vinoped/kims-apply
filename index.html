@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>An AI-safe education · Admissions open 2026–27 | KIMS Selaiyur</title>
+<title>An AI-safe education · Admissions open | KIMS Selaiyur</title>
 <meta name="description" content="Admissions open for Pre-KG to Class 5 at Kudos Indian Montessori Shikshalaya (KIMS), Selaiyur, Chennai. AI can memorise anything; at KIMS, children must understand concepts. Share your number and talk to our admissions team.">
 <meta property="og:title" content="Protect your child's future with an AI-safe education · KIMS Selaiyur">
 <meta property="og:description" content="AI can memorise anything. At KIMS, children must understand concepts. Montessori learning in Selaiyur, Chennai, Pre-KG to Class 5.">
@@ -190,6 +190,49 @@
   .sticky .btn { min-height: 54px; }
   .sticky .btn-ghost { flex: 0 0 auto; width: auto; background: var(--paper); color: var(--green); border: 2px solid var(--green); padding: 0 18px; }
 
+  /* Pitch sections */
+  .kicker { display: block; font-weight: 800; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .big { font-size: 1.06rem; }
+  .versus { margin-top: 8px; }
+  .versus .vs-head, .versus li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+  .versus .vs-head { font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding: 0 2px; }
+  .versus .vs-head span:last-child { color: var(--green); }
+  .versus ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .versus .no, .versus .yes { display: flex; align-items: flex-start; gap: 8px; padding: 12px 10px; border-radius: 12px; font-size: .93rem; line-height: 1.3; }
+  .versus .no { background: #F3EEE6; color: var(--muted); }
+  .versus .yes { background: var(--green-tint); color: #12401F; font-weight: 800; }
+  .versus .no svg, .versus .yes svg { flex: none; width: 16px; height: 16px; margin-top: 1px; }
+  .versus .no svg { color: #B0A391; }
+  .versus .yes svg { color: var(--green); }
+  .gallery { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin-top: 26px; }
+  .gallery figure { margin: 0; position: relative; border-radius: 14px; overflow: hidden; background: #EDE6DA; }
+  .gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+  .gallery figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 10px 9px; font-size: .84rem; font-weight: 800; color: #fff; background: linear-gradient(transparent, rgba(0, 0, 0, .62)); }
+  .insta { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 10px; font-weight: 800; color: var(--green); text-decoration: none; }
+  .cta-zone { padding-top: 8px; }
+  .future { background: var(--paper); border: 1px solid var(--line); border-left: 6px solid var(--gold); border-radius: var(--radius); padding: 22px 20px; }
+  .future h2 { font-size: clamp(1.3rem, 4.8vw, 1.7rem); }
+  .future p { margin: 0; color: var(--muted); }
+  .final { margin-top: 20px; background: var(--red); color: #fff; border-radius: 24px; padding: 28px 20px; position: relative; overflow: hidden; }
+  .final::after { content: ""; display: none; position: absolute; right: -50px; top: -50px; width: 170px; height: 170px; border-radius: 50%; border: 16px solid rgba(212, 147, 4, .5); }
+  .final > * { position: relative; z-index: 1; }
+  .final h2 { color: #fff; font-size: clamp(1.5rem, 5.6vw, 2.1rem); }
+  .final p { color: #FBE3E4; margin: 0; }
+  .final .ctas { display: grid; gap: 10px; margin-top: 20px; }
+  .btn-light { background: transparent; color: #fff; border: 2px solid rgba(255, 255, 255, .75); }
+  .btn-light:active { background: rgba(255, 255, 255, .12); }
+  .visit .map { margin-top: 22px; }
+
+  @media (min-width: 900px) {
+    .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+    section.problem, section.how, section.visit { padding: 64px 0; }
+    .versus { margin-top: 0; }
+    .final { padding: 40px 44px; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+    .final .ctas { margin-top: 0; }
+    .final::after { display: block; }
+    .visit .map { margin-top: 0; }
+  }
+
   @media (min-width: 900px) {
     body { font-size: 18px; }
     .wrap { padding: 0 24px; }
@@ -248,9 +291,9 @@
         <h1>Protect your child’s future with an <span class="nw">AI-safe</span> education</h1>
         <p class="lead">AI can memorise anything. At KIMS Selaiyur, children must understand concepts.</p>
         <ul class="points desk-only" aria-label="Why KIMS">
-          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></div><div><b>Concepts, not cramming</b><span>Children explore ideas until they make sense, rather than repeating answers by rote.</span></div></li>
-          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></div><div><b>Learning by doing</b><span>Real Montessori materials for maths, language and the senses.</span></div></li>
-          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></div><div><b>Montessori + Tagore</b><span>A happy child is a child who flourishes.</span></div></li>
+          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></div><div><b>Understanding, not rote learning</b><span>Children learn concepts hands-on, so they can think for themselves.</span></div></li>
+          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></div><div><b>Maths and reading that make sense</b><span>Real materials first, so ideas click instead of being crammed.</span></div></li>
+          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></div><div><b>Happy, confident children</b><span>A happy child is a child who flourishes.</span></div></li>
         </ul>
         <div class="photos desk-only">
           <img src="https://static.wixstatic.com/media/67b306_b56b4913d2e9469c958682ada0259152~mv2.jpeg/v1/fill/w_560,h_420,al_c,q_80/kims-classroom.jpeg" alt="Children building with Montessori wooden materials" width="280" height="210" loading="lazy">
@@ -260,7 +303,7 @@
 
       <div class="card" id="apply" aria-live="polite">
         <form id="lead-form" novalidate>
-          <h2>Start your application</h2>
+          <h2>Start your child’s admission</h2>
 
           <div class="field" id="f-phone">
             <label for="phone">Mobile number</label>
@@ -320,33 +363,86 @@
     </div>
   </section>
 
-  <section class="alt">
-    <div class="wrap split">
+  <section class="alt problem">
+    <div class="wrap two">
       <div>
-        <h2 class="section">Concept-based learning, not mindless memorisation</h2>
-        <p class="section-lead">AI can recall any fact in seconds, so memorising answers is no longer enough. What protects your child’s future is understanding. At KIMS, children learn by doing, working with real materials at their own pace until an idea truly makes sense.</p>
-        <ul class="points">
-          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></div><div><b>Maths they can hold</b><span>Children see, touch and count real quantities, so numbers mean something instead of being symbols to memorise.</span></div></li>
-          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 16l4-9 4 9M9.5 13h5"/></svg></div><div><b>Words they build themselves</b><span>With movable alphabet letters, children put sounds together to make words and discover how language works.</span></div></li>
-          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="7.5" r="3.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><path d="M8 13.5l4 7H4z"/></svg></div><div><b>Learning through the senses</b><span>Sensorial materials help children understand shape, size and space by exploring them with their hands.</span></div></li>
-          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></div><div><b>Montessori + Tagore</b><span>Rooted in the principles of Dr. Maria Montessori and the vision of Rabindranath Tagore, following how children naturally grow.</span></div></li>
+        <span class="kicker">Why it matters</span>
+        <h2 class="section">Memorising answers won’t protect your child’s future</h2>
+        <p class="big">AI can already recall any fact, formula or answer in a second. A child who only learns by rote is learning to do what machines already do better.</p>
+        <p class="big">A child who understands concepts can think, question and solve problems they have never seen before. <strong>That is what we teach at KIMS.</strong></p>
+      </div>
+      <div class="versus">
+        <div class="vs-head" aria-hidden="true"><span>Rote learning</span><span>At KIMS</span></div>
+        <ul aria-label="Rote learning compared with learning at KIMS">
+          <li><span class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span class="sr">Rote learning: </span>Memorise answers</span><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="sr">At KIMS: </span>Understand concepts</span></li>
+          <li><span class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span class="sr">Rote learning: </span>Recite tables</span><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="sr">At KIMS: </span>See how numbers work</span></li>
+          <li><span class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span class="sr">Rote learning: </span>Copy from the board</span><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="sr">At KIMS: </span>Learn by doing</span></li>
+          <li><span class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span class="sr">Rote learning: </span>Wait to be told</span><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="sr">At KIMS: </span>Ask why, find out</span></li>
+          <li><span class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span class="sr">Rote learning: </span>Easy for AI to replace</span><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="sr">At KIMS: </span>Ready for an AI world</span></li>
         </ul>
-        <p class="outcome">Along the way, children grow in independence, confidence and creative thinking.</p>
-        <div class="photos">
-          <img src="https://static.wixstatic.com/media/67b306_5afcb1e18f6b47b58cdbc0d30d604d52~mv2.png/v1/fill/w_560,h_420,al_c,q_80/kims-woodwork.png" alt="Children working on a woodwork activity in the classroom" width="280" height="210" loading="lazy">
-          <img src="https://static.wixstatic.com/media/67b306_a80de769d54948858fdb6b807590ce6c~mv2.png/v1/fill/w_560,h_420,al_c,q_80/kims-playground.png" alt="The school's green turf play area" width="280" height="210" loading="lazy">
-        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how">
+    <div class="wrap two">
+      <div>
+        <span class="kicker">How your child learns</span>
+        <h2 class="section">Concept-based learning, not mindless memorisation</h2>
+        <p class="section-lead">In our Montessori classrooms, children learn the way they learn best: by doing. Ideas are explored with real materials, at your child’s own pace, until they truly make sense.</p>
+        <ul class="points">
+          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></div><div><b>Maths they can see and touch</b><span>Children count, build and compare real objects, so numbers mean something long before they become sums on paper.</span></div></li>
+          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 16l4-9 4 9M9.5 13h5"/></svg></div><div><b>Reading with understanding</b><span>Children learn the sounds letters make and build their own words, so they read with understanding, not by repetition.</span></div></li>
+          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg></div><div><b>Hands busy, minds switched on</b><span>Science, nature, cooking, music and movement are all hands-on, so learning sticks.</span></div></li>
+          <li><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></div><div><b>Happy, confident, independent</b><span>We believe a happy child is the surest sign that a child’s needs are being met. Our children grow in confidence and independence every day.</span></div></li>
+        </ul>
       </div>
       <div>
-        <h2 class="section" style="margin-top:28px">Visit or call us</h2>
+        <div class="gallery">
+          <figure><img src="https://static.wixstatic.com/media/67b306_b56b4913d2e9469c958682ada0259152~mv2.jpeg/v1/fill/w_520,h_520,al_c,q_80/kims.jpg" alt="Two children building with wooden Montessori materials" width="260" height="260" loading="lazy"><figcaption>Hands-on classrooms</figcaption></figure>
+          <figure><img src="https://static.wixstatic.com/media/67b306_5afcb1e18f6b47b58cdbc0d30d604d52~mv2.png/v1/fill/w_520,h_520,al_c,q_80/kims.jpg" alt="Children working on a woodwork activity" width="260" height="260" loading="lazy"><figcaption>Learning by making</figcaption></figure>
+          <figure><img src="https://static.wixstatic.com/media/67b306_9e4766bf0fa14d1d800ee41be2accdb7~mv2.jpg/v1/fill/w_520,h_520,al_c,q_80/kims.jpg" alt="Children performing a dance on stage" width="260" height="260" loading="lazy"><figcaption>Confidence on stage</figcaption></figure>
+          <figure><img src="https://static.wixstatic.com/media/67b306_a80de769d54948858fdb6b807590ce6c~mv2.png/v1/fill/w_520,h_520,al_c,q_80/kims.jpg" alt="A green turf play area" width="260" height="260" loading="lazy"><figcaption>Room to run and play</figcaption></figure>
+        </div>
+        <a class="insta" href="https://www.instagram.com/kimschennai/" target="_blank" rel="noopener">See daily life at KIMS on Instagram <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-zone">
+    <div class="wrap">
+      <div class="future">
+        <span class="kicker">Beyond Class 5</span>
+        <h2>Room to grow with KIMS</h2>
+        <p>KIMS Higher Secondary School (Class 6 to 12) is opening soon, and it will admit only KIMS Primary students. Joining now keeps that path open for your child.</p>
+      </div>
+      <div class="final">
+        <div>
+          <h2>Admissions are open now</h2>
+          <p>Places are filled on a first-come, first-served basis. Share your number in 30 seconds and talk to our admissions team today.</p>
+        </div>
+        <div class="ctas">
+          <a class="btn btn-go" href="#apply">Start your child’s admission <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-light" href="tel:+919884261592" data-call><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Call +91 98842 61592</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt visit">
+    <div class="wrap two">
+      <div>
+        <span class="kicker">Visit us</span>
+        <h2 class="section">Come and see KIMS in Selaiyur</h2>
         <div class="contact">
           <div><span class="k">Phone</span><a href="tel:+919884261592" data-call>+91 98842 61592</a></div>
           <div><span class="k">Email</span><a href="mailto:thevedic@gmail.com">thevedic@gmail.com</a></div>
           <div><span class="k">Address</span><a class="addr" href="https://maps.app.goo.gl/pvtjJJ6JbX8Po89R7" target="_blank" rel="noopener">Avvai Nagar, Indira Nagar West Extension, Selaiyur, Chennai 600073</a></div>
         </div>
+      </div>
+      <div>
         <div class="map"><iframe title="Map showing KIMS in Selaiyur, Chennai" src="https://maps.google.com/maps?cid=5215206354964695475&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
         <a class="btn btn-outline" href="https://maps.app.goo.gl/pvtjJJ6JbX8Po89R7" target="_blank" rel="noopener" data-directions><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Get directions</a>
-        <div class="note"><strong>Class 6 to 12:</strong> KIMS Higher Secondary School is opening soon, for current KIMS Primary students only. No new admissions for Classes 6 to 12.</div>
       </div>
     </div>
   </section>
@@ -620,6 +716,15 @@
     fClass.classList.remove("valid", "invalid");
     card.classList.remove("is-done");
     radios[0].focus();
+  });
+
+  // ---- Links to the form focus the next empty field ----
+  document.querySelectorAll('a[href="#apply"]').forEach(function (a) {
+    a.addEventListener("click", function () {
+      if (card.classList.contains("is-done")) return;
+      var next = !validPhone(lead.phone) ? phoneEl : (!lead.name ? nameEl : null);
+      if (next) setTimeout(function () { next.focus({ preventScroll: true }); }, 450);
+    });
   });
 
   // ---- Sticky bar on phones once the form scrolls away ----
