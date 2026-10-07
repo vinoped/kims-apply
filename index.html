@@ -10,7 +10,7 @@
 <meta property="og:image" content="https://static.wixstatic.com/media/67b306_b56b4913d2e9469c958682ada0259152~mv2.jpeg/v1/fill/w_1200,h_630,al_c,q_80/kims-classroom.jpeg">
 <meta property="og:url" content="https://apply.kimsindia.com/">
 <meta name="theme-color" content="#B5121B">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/img/kims-icon-64.png">
 <link rel="apple-touch-icon" href="/assets/img/kims-icon-180.png">
@@ -34,14 +34,6 @@
     --body: "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     --emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
     --r: 18px; --r-sm: 12px;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #111113; --sand: #18181B; --ink: #F4F4F5; --muted: #A1A1AA; --line: #2E2E33;
-      --red: #F0525A; --red-ink: #18181B; --gold: #F0B53A; --tint: rgba(240, 82, 90, .16); --error: #FF8A80;
-      --deep: #1F1F23; --foot: #0A0A0B; --crest-field: #FFFFFF; --crest-mark: #CC1417;
-      --shadow: 0 18px 40px -22px rgba(0, 0, 0, .8); color-scheme: dark;
-    }
   }
   :root[data-theme="dark"] {
     --paper: #111113; --sand: #18181B; --ink: #F4F4F5; --muted: #A1A1AA; --line: #2E2E33;
@@ -72,7 +64,7 @@
   .wm { display: block; height: 26px; width: auto; flex: none; }
   .theme { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); display: grid; place-items: center; cursor: pointer; padding: 0; }
   .theme .ic { grid-area: 1 / 1; } .theme .i-sun { display: none; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .theme .i-sun { display: block; } :root:not([data-theme="light"]) .theme .i-moon { display: none; } }
+  :root[data-theme="dark"] .theme .i-sun { display: block; } :root[data-theme="dark"] .theme .i-moon { display: none; }
   :root[data-theme="dark"] .theme .i-sun { display: block; } :root[data-theme="dark"] .theme .i-moon { display: none; }
   .call-pill { display: inline-flex; align-items: center; gap: 8px; flex: none; height: 44px; padding: 0 16px; border-radius: 999px;
     background: var(--red); color: var(--red-ink); font-weight: 800; font-size: .95rem; text-decoration: none; box-shadow: 0 10px 22px -12px var(--red); }
@@ -738,9 +730,9 @@
 
   // ---- Light / dark switch: a saved choice wins, otherwise the device setting decides ----
   (function () {
-    var root = document.documentElement, sys = window.matchMedia("(prefers-color-scheme: dark)"), btn = document.querySelector(".theme");
+    var root = document.documentElement, btn = document.querySelector(".theme");
     if (!btn) return;
-    function current() { return root.dataset.theme || (sys.matches ? "dark" : "light"); }
+    function current() { return root.dataset.theme || "light"; }
     function label() { btn.setAttribute("aria-label", current() === "dark" ? "Switch to light mode" : "Switch to dark mode"); }
     label();
     btn.addEventListener("click", function () {
@@ -749,7 +741,6 @@
       try { localStorage.setItem("kims-theme", next); } catch (e) {}
       label();
     });
-    if (sys.addEventListener) sys.addEventListener("change", label);
   })();
 
   // ---- Links to the form focus the next empty field ----
